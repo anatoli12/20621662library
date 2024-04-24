@@ -9,8 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateOperatorInput implements ProcessorInput {
-    private String firstName;
-    private String lastName;
     private String email;
     private String password;
     private String confirmPassword;
