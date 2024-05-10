@@ -1,4 +1,4 @@
-package bg.tuvarna.api.administrator.createoperator;
+package bg.tuvarna.api.operations.administrator.createoperator;
 
 import bg.tuvarna.api.base.Processor;
 

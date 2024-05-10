@@ -1,4 +1,4 @@
-package bg.tuvarna.api.user.logout;
+package bg.tuvarna.api.operations.user.logout;
 
 import bg.tuvarna.api.base.ProcessorResult;
 import lombok.*;

@@ -1,4 +1,4 @@
-package bg.tuvarna.api.user.login;
+package bg.tuvarna.api.operations.user.login;
 
 import bg.tuvarna.api.UserAuthority;
 import bg.tuvarna.api.base.ProcessorResult;

@@ -1,4 +1,4 @@
-package bg.tuvarna.api.administrator.removeoperator;
+package bg.tuvarna.api.operations.administrator.removeoperator;
 
 import bg.tuvarna.api.base.Processor;
 

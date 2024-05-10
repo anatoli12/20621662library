@@ -1,9 +1,11 @@
 package bg.tuvarna.core.service;
 
 import bg.tuvarna.api.UserAuthority;
-import bg.tuvarna.api.administrator.createoperator.CreateOperator;
-import bg.tuvarna.api.administrator.createoperator.CreateOperatorInput;
-import bg.tuvarna.api.administrator.createoperator.CreateOperatorResult;
+import bg.tuvarna.api.exception.IncorrectInputException;
+import bg.tuvarna.api.exception.UserExistsException;
+import bg.tuvarna.api.operations.administrator.createoperator.CreateOperator;
+import bg.tuvarna.api.operations.administrator.createoperator.CreateOperatorInput;
+import bg.tuvarna.api.operations.administrator.createoperator.CreateOperatorResult;
 import bg.tuvarna.persistence.entity.User;
 import bg.tuvarna.persistence.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
