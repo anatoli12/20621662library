@@ -17,14 +17,15 @@ import java.util.UUID;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "book_id")
+    @Column(name = "book_id", nullable = false)
     private UUID id;
     @Column
     private String title;
     @Column
     private String isbn;
-    @Column
-    private String author;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id", nullable = false)
+    private Author author;
     @Column
     @Enumerated(EnumType.STRING)
     private BookGenre bookGenre;

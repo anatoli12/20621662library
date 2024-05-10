@@ -1,4 +1,4 @@
-package bg.tuvarna.api.administrator.registerbook;
+package bg.tuvarna.api.operations.administrator.registerbook;
 
 import bg.tuvarna.api.base.ProcessorResult;
 import lombok.*;
@@ -9,5 +9,5 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RegisterBookResult implements ProcessorResult {
-    private Boolean isRegistered;
+    private String bookId;
 }

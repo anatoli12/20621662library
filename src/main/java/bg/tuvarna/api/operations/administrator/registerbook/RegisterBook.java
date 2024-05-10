@@ -1,4 +1,4 @@
-package bg.tuvarna.api.administrator.registerbook;
+package bg.tuvarna.api.operations.administrator.registerbook;
 
 import bg.tuvarna.api.base.Processor;
 
