@@ -1,4 +1,4 @@
-package bg.tuvarna.api.administrator.removearchivedbooks;
+package bg.tuvarna.api.operations.administrator.removearchivedbooks;
 
 import bg.tuvarna.api.base.ProcessorResult;
 import lombok.*;
@@ -9,4 +9,5 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RemoveArchivedBookItemsResult implements ProcessorResult {
+    private Boolean isSuccessful;
 }

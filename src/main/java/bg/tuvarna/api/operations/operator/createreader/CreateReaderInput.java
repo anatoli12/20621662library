@@ -1,4 +1,4 @@
-package bg.tuvarna.api.operator.createreader;
+package bg.tuvarna.api.operations.operator.createreader;
 
 import bg.tuvarna.api.base.ProcessorInput;
 import lombok.*;

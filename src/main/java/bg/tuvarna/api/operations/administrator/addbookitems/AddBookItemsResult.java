@@ -1,4 +1,4 @@
-package bg.tuvarna.api.administrator.addbookitems;
+package bg.tuvarna.api.operations.administrator.addbookitems;
 
 import bg.tuvarna.api.base.ProcessorResult;
 import lombok.*;

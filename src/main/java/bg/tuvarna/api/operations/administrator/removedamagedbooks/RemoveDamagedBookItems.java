@@ -1,4 +1,4 @@
-package bg.tuvarna.api.administrator.removedamagedbooks;
+package bg.tuvarna.api.operations.administrator.removedamagedbooks;
 
 import bg.tuvarna.api.base.Processor;
 

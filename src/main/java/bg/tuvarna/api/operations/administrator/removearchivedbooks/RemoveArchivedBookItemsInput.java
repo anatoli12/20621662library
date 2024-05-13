@@ -1,4 +1,4 @@
-package bg.tuvarna.api.administrator.removearchivedbooks;
+package bg.tuvarna.api.operations.administrator.removearchivedbooks;
 
 import bg.tuvarna.api.base.ProcessorInput;
 import lombok.*;
@@ -9,4 +9,5 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RemoveArchivedBookItemsInput implements ProcessorInput {
+    private String placeHolder;
 }

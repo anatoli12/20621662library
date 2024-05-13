@@ -1,4 +1,4 @@
-package bg.tuvarna.api.administrator.removebookitems;
+package bg.tuvarna.api.operations.administrator.removebookitems;
 
 import bg.tuvarna.api.base.Processor;
 
