@@ -8,14 +8,16 @@ import bg.tuvarna.api.operations.user.login.UserLoginResult;
 import bg.tuvarna.core.util.ActiveUser;
 import bg.tuvarna.persistence.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class UserLoginService implements UserLogin {
     private final UserRepository userRepository;
     private final AuthenticationManager authenticationManager;
@@ -23,23 +25,35 @@ public class UserLoginService implements UserLogin {
 
     @Override
     public UserLoginResult process(UserLoginInput input) {
+        log.info("Processing UserLoginInput: {}", input);
+
         if (input.getEmail().isEmpty() || input.getPassword().isEmpty()) {
+            log.warn("Email or password is empty.");
             throw new IncorrectInputException("Email or password cannot be empty");
         }
+
+        log.info("Authenticating user with email: {}", input.getEmail());
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         input.getEmail(),
                         input.getPassword()
                 )
         );
+
         var user = userRepository.findByEmail(input.getEmail())
-                .orElseThrow(() -> new UserNotFoundException("User does not exist."));
+                .orElseThrow(() -> {
+                    log.warn("User with email {} does not exist.", input.getEmail());
+                    return new UserNotFoundException("User does not exist.");
+                });
+
+        log.info("User authenticated successfully: {}", user);
 
         activeUser.setUserId(Optional.ofNullable(user.getId()));
+
+        log.info("Setting active user ID: {}", activeUser.getUserId().orElse(null));
 
         return UserLoginResult.builder()
                 .userId(activeUser.getUserId().get())
                 .build();
-
     }
 }
