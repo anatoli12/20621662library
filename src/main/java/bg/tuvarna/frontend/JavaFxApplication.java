@@ -44,7 +44,13 @@ public class JavaFxApplication extends javafx.application.Application {
         logger.log(Level.INFO, "Started application");
     }
 
+    private static void handleUncaughtException(Thread t, Throwable e){
+        // Global exception handling logic here
+        System.err.println("Uncaught exception in thread " + t.getName() + ": " + e.getMessage());
+        e.printStackTrace();
+    }
     public static void main(String[] args) {
+        Thread.setDefaultUncaughtExceptionHandler(JavaFxApplication::handleUncaughtException);
         launch();
     }
 }

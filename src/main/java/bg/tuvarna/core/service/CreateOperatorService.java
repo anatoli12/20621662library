@@ -6,13 +6,18 @@ import bg.tuvarna.api.exception.UserExistsException;
 import bg.tuvarna.api.operations.administrator.createoperator.CreateOperator;
 import bg.tuvarna.api.operations.administrator.createoperator.CreateOperatorInput;
 import bg.tuvarna.api.operations.administrator.createoperator.CreateOperatorResult;
+import bg.tuvarna.api.operations.operator.createreader.CreateReaderInput;
 import bg.tuvarna.persistence.entity.User;
 import bg.tuvarna.persistence.repository.UserRepository;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -20,9 +25,14 @@ import java.util.Optional;
 public class CreateOperatorService implements CreateOperator {
 
     private final UserRepository userRepository;
-
+    private final Validator validator;
     @Override
     public CreateOperatorResult process(CreateOperatorInput input) {
+        Set<ConstraintViolation<CreateOperatorInput>> violations = validator.validate(input);
+        if (!violations.isEmpty()) {
+            throw new ConstraintViolationException(violations);
+        }
+
         log.info("Processing CreateOperatorInput: {}", input);
 
         if (!input.getPassword().equals(input.getConfirmPassword())) {
