@@ -5,5 +5,5 @@ public enum BookGenre {
     CYBERPUNK,
     CHILDREN,
     SCI_FI,
-    HISTORICAL;
+    HISTORICAL
 }

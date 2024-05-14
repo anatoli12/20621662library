@@ -16,6 +16,7 @@ import java.util.Optional;
 public class UserLogoutService implements UserLogout {
 
     private final ActiveUser activeUser;
+
     @Override
     public UserLogoutResult process(UserLogoutInput input) {
         activeUser.setUserId(Optional.empty());

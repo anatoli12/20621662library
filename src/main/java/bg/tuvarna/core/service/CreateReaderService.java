@@ -16,6 +16,7 @@ import java.util.ArrayList;
 @Slf4j
 public class CreateReaderService implements CreateReader {
     private final ReaderRepository readerRepository;
+
     @Override
     public CreateReaderResult process(CreateReaderInput input) {
         log.info("Processing CreateReaderInput: {}", input);

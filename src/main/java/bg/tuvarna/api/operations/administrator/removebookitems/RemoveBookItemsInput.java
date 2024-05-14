@@ -4,7 +4,6 @@ import bg.tuvarna.api.base.ProcessorInput;
 import lombok.*;
 
 import java.util.Set;
-import java.util.UUID;
 
 @Builder
 @Getter

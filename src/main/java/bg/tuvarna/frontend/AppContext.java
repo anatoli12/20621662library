@@ -11,10 +11,11 @@ public class AppContext {
     @Setter
     private ConfigurableApplicationContext context;
 
-    public AppContext() {}
+    public AppContext() {
+    }
 
-    public static AppContext getInstance(){
-        if(appContext == null){
+    public static AppContext getInstance() {
+        if (appContext == null) {
             appContext = new AppContext();
         }
         return appContext;

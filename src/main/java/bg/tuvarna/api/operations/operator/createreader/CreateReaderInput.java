@@ -1,11 +1,11 @@
 package bg.tuvarna.api.operations.operator.createreader;
 
 import bg.tuvarna.api.base.ProcessorInput;
-import lombok.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.*;
 
 @Builder
 @Getter

@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.Length;
 @AllArgsConstructor
 public class AddBookItemsInput implements ProcessorInput {
     @NotBlank(message = "ISBN must not be blank")
-    @Length(min=14, max=14)
+    @Length(min = 14, max = 14)
     private String isbn;
     @Positive
     private Integer quantity;

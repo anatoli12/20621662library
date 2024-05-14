@@ -16,7 +16,7 @@ public class RegisterBookInput implements ProcessorInput {
     @NotBlank(message = "You need to have a title!")
     private String title;
     @NotBlank(message = "ISBN must not be blank")
-    @Length(min=14, max=14)
+    @Length(min = 14, max = 14)
     private String isbn;
     @NotBlank(message = "Who wrote the book?")
     private String author;

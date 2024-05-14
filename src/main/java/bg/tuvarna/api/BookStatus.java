@@ -5,5 +5,5 @@ public enum BookStatus {
     RENTED_OUT,
     ARCHIVED,
     DAMAGED,
-    IN_READING_ROOM;
+    IN_READING_ROOM
 }
