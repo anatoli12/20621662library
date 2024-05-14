@@ -25,15 +25,15 @@ public class CreateOperatorService implements CreateOperator {
     public CreateOperatorResult process(CreateOperatorInput input) {
         log.info("Processing CreateOperatorInput: {}", input);
 
+        if (!input.getPassword().equals(input.getConfirmPassword())) {
+            log.warn("Passwords do not match for email {}", input.getEmail());
+            throw new IncorrectInputException("Passwords don't match.");
+        }
+
         Optional<User> existingUser = userRepository.findByEmail(input.getEmail());
         if (existingUser.isPresent()) {
             log.warn("User with email {} already exists.", input.getEmail());
             throw new UserExistsException("User with this email exists.");
-        }
-
-        if (!input.getPassword().equals(input.getConfirmPassword())) {
-            log.warn("Passwords do not match for email {}", input.getEmail());
-            throw new IncorrectInputException("Passwords don't match.");
         }
 
         var user = User.builder()
