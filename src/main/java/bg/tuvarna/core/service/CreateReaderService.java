@@ -5,15 +5,11 @@ import bg.tuvarna.api.operations.operator.createreader.CreateReaderInput;
 import bg.tuvarna.api.operations.operator.createreader.CreateReaderResult;
 import bg.tuvarna.persistence.entity.Reader;
 import bg.tuvarna.persistence.repository.ReaderRepository;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
-import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor

@@ -1,5 +1,6 @@
 package bg.tuvarna.persistence.entity;
 
+import bg.tuvarna.api.BookStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,4 +25,8 @@ public class BookItem {
 
     @ManyToOne
     private Reader reader;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private BookStatus bookStatus;
 }

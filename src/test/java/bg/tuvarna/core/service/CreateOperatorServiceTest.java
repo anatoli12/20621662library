@@ -1,10 +1,5 @@
 package bg.tuvarna.core.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.*;
-
 import bg.tuvarna.api.UserAuthority;
 import bg.tuvarna.api.exception.IncorrectInputException;
 import bg.tuvarna.api.exception.UserExistsException;
@@ -21,6 +16,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class CreateOperatorServiceTest {

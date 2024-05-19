@@ -1,9 +1,5 @@
 package bg.tuvarna.core.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-
 import bg.tuvarna.api.operations.operator.createreader.CreateReaderInput;
 import bg.tuvarna.api.operations.operator.createreader.CreateReaderResult;
 import bg.tuvarna.persistence.entity.Reader;
@@ -22,6 +18,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class CreateReaderServiceTest {
