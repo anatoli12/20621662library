@@ -21,4 +21,7 @@ public class BookItem {
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
+
+    @ManyToOne
+    private Reader reader;
 }

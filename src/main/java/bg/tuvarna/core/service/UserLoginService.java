@@ -20,7 +20,7 @@ import java.util.Optional;
 @Slf4j
 public class UserLoginService implements UserLogin {
     private final UserRepository userRepository;
-    private final AuthenticationManager authenticationManager;
+//    private final AuthenticationManager authenticationManager;
     private final ActiveUser activeUser;
 
     @Override
@@ -32,18 +32,10 @@ public class UserLoginService implements UserLogin {
             throw new IncorrectInputException("Email or password cannot be empty");
         }
 
-        log.info("Authenticating user with email: {}", input.getEmail());
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        input.getEmail(),
-                        input.getPassword()
-                )
-        );
-
-        var user = userRepository.findByEmail(input.getEmail())
+        var user = userRepository.findByEmailAndPassword(input.getEmail(), input.getPassword())
                 .orElseThrow(() -> {
-                    log.warn("User with email {} does not exist.", input.getEmail());
-                    return new UserNotFoundException("User does not exist.");
+                    log.warn("Incorrect username or password", input.getEmail());
+                    return new UserNotFoundException("Incorrect username or password");
                 });
 
         log.info("User authenticated successfully: {}", user);

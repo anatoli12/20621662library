@@ -25,13 +25,13 @@ import java.util.Set;
 public class CreateOperatorService implements CreateOperator {
 
     private final UserRepository userRepository;
-    private final Validator validator;
+//    private final Validator validator;
     @Override
     public CreateOperatorResult process(CreateOperatorInput input) {
-        Set<ConstraintViolation<CreateOperatorInput>> violations = validator.validate(input);
-        if (!violations.isEmpty()) {
-            throw new ConstraintViolationException(violations);
-        }
+//        Set<ConstraintViolation<CreateOperatorInput>> violations = validator.validate(input);
+//        if (!violations.isEmpty()) {
+//            throw new ConstraintViolationException(violations);
+//        }
 
         log.info("Processing CreateOperatorInput: {}", input);
 
