@@ -26,7 +26,7 @@ public class JavaFxApplication extends javafx.application.Application {
         logger = Logger.getLogger(this.getClass().getName());
         PropertyConfigurator.configure(getClass().getResource("src/main/resources/log4j.properties"));
         AppContext.getInstance().setContext(SpringApplication.run(bg.tuvarna.frontend.SpringApplication.class));
-        FXMLLoader fxmlLoader = new FXMLLoader(JavaFxApplication.class.getResource("/fxmls/login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(JavaFxApplication.class.getResource("/javafxml/main-page.fxml"));
         fxmlLoader.setControllerFactory(AppContext.getInstance().getContext()::getBean);
         rootNode = fxmlLoader.load();
     }

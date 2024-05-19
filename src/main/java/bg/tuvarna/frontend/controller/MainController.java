@@ -1,35 +1,64 @@
 package bg.tuvarna.frontend.controller;
 
+import bg.tuvarna.api.operations.user.login.UserLoginInput;
+import bg.tuvarna.api.operations.user.login.UserLoginResult;
+import bg.tuvarna.core.service.UserLoginService;
+import bg.tuvarna.frontend.utils.SceneChanger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.log4j.Level;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class MainController {
 
     @FXML
-    private TextField email_form;
+    private TextField emailForm;
 
     @FXML
-    private Label email_label;
+    private Label emailLabel;
 
     @FXML
-    private Button login_button;
+    private Button loginButton;
 
     @FXML
-    private Label main_title;
+    private Label mainTitle;
 
     @FXML
-    private PasswordField password_form;
+    private PasswordField passwordForm;
 
     @FXML
-    private Label password_label;
+    private Label passwordLabel;
+
+    @FXML
+    private Label userNotFoundLabel;
+
+    @Autowired
+    private UserLoginService userLoginService;
 
     @FXML
     void login() {
 
+        UserLoginInput userLoginInput = UserLoginInput.builder()
+                .email(emailForm.getText())
+                .password(passwordForm.getText())
+                .build();
+        try {
+            UserLoginResult result = userLoginService.process(userLoginInput);
+            SceneChanger.changeScene((Stage) mainTitle.getScene().getWindow(), "${fxml.paths.loginForm}");
+            log.info("User logged in successfully: {}", userLoginInput.getEmail());
+        } catch (Exception e){
+            userNotFoundLabel.setText(e.getMessage());
+            log.error(e.getMessage());
+        }
     }
+
 }
