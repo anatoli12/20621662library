@@ -1,9 +1,12 @@
 package bg.tuvarna.frontend.controller;
 
+import bg.tuvarna.api.operations.administrator.getbooks.GetBooks;
+import bg.tuvarna.api.operations.administrator.getbooks.GetBooksInput;
 import bg.tuvarna.api.operations.administrator.getoperators.GetOperators;
 import bg.tuvarna.api.operations.administrator.getoperators.GetOperatorsInput;
 import bg.tuvarna.api.operations.user.logout.UserLogout;
 import bg.tuvarna.api.operations.user.logout.UserLogoutInput;
+import bg.tuvarna.api.operations.util.BookDTO;
 import bg.tuvarna.api.operations.util.OperatorDTO;
 import bg.tuvarna.frontend.utils.SceneChanger;
 import javafx.collections.FXCollections;
@@ -70,6 +73,8 @@ public class AdminController {
     private GetOperators getOperators;
     @Autowired
     private SceneChanger sceneChanger;
+    @Autowired
+    private GetBooks getBooks;
 
     @Value("${fxml.paths.loginForm}")
     private String loginFormPath;
@@ -96,25 +101,30 @@ public class AdminController {
 
     @FXML
     public void initialize() {
-        // Initialize the columns
-        bookTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        bookAuthorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
-        bookQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        initOperators();
+    }
+
+    private void initOperators(){
+
         operatorEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         operatorIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 
-        // Add initial data to the tables
-//        ObservableList<Book> books = FXCollections.observableArrayList(
-//                new Book("Book 1", "Author 1"),
-//                new Book("Book 2", "Author 2"),
-//                new Book("Book 3", "Author 3")
-//        );
-//        bookTable.setItems(books);
 
         ObservableList<OperatorDTO> operators = FXCollections.observableArrayList(
                 getOperators.process(new GetOperatorsInput()).getOperators()
         );
         operatorTable.setItems(operators);
+    }
+
+    private void initBooks(){
+        bookTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        bookAuthorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
+        bookQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
+        ObservableList<BookDTO> bookDTOS = FXCollections.observableArrayList(
+                getBooks.process(new GetBooksInput()).getBookDTOList()
+        );
+        bookTable.setItems(bookDTOS);
     }
 
 }
