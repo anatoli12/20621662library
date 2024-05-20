@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -40,7 +41,12 @@ public class MainController {
     private Label userNotFoundLabel;
 
     @Autowired
+    private SceneChanger sceneChanger;
+    @Autowired
     private UserLoginService userLoginService;
+
+    @Value("${fxml.paths.adminForm}")
+    private String adminFormPath;
 
     @FXML
     void login() {
@@ -51,7 +57,8 @@ public class MainController {
                 .build();
         try {
             UserLoginResult result = userLoginService.process(userLoginInput);
-            SceneChanger.changeScene((Stage) mainTitle.getScene().getWindow(), "${fxml.paths.loginForm}");
+            log.info(adminFormPath);
+            sceneChanger.changeScene((Stage) mainTitle.getScene().getWindow(), adminFormPath);
             log.info("User logged in successfully: {}", userLoginInput.getEmail());
         } catch (Exception e){
             userNotFoundLabel.setText(e.getMessage());

@@ -18,7 +18,7 @@
                 <TextField fx:id="emailForm" layoutX="239.0" layoutY="147.0" />
                 <Button fx:id="loginButton" layoutX="288.0" layoutY="248.0" mnemonicParsing="false" onAction="#login" text="Login" />
                 <PasswordField fx:id="passwordForm" layoutX="239.0" layoutY="194.0" />
-            <Label fx:id="userNotFoundLabel" layoutX="193.0" layoutY="319.0" prefHeight="17.0" prefWidth="216.0" text="Label" />
+            <Label fx:id="userNotFoundLabel" layoutX="193.0" layoutY="319.0" prefHeight="17.0" prefWidth="216.0" text="" />
             </children>
         </AnchorPane>
     </center>
