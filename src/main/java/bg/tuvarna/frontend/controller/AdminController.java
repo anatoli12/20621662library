@@ -56,6 +56,13 @@ public class AdminController {
 
     @Value("${fxml.paths.loginForm}")
     private String loginFormPath;
+    @Value("${fxml.paths.createOperatorForm}")
+    private String createOperatorFormPath;
+
+    @FXML
+    void createOperator() {
+        sceneChanger.changeScene((Stage) logoutButton.getScene().getWindow(), createOperatorFormPath);
+    }
 
     @FXML
     void logout(){
@@ -68,6 +75,10 @@ public class AdminController {
 //            log.error(e.printStackTrace());
             e.printStackTrace();
         }
+    }
+
+    void initialize(){
+
     }
 
 }
