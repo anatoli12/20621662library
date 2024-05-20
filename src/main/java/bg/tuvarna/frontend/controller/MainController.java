@@ -1,5 +1,6 @@
 package bg.tuvarna.frontend.controller;
 
+import bg.tuvarna.api.UserAuthority;
 import bg.tuvarna.api.operations.user.login.UserLoginInput;
 import bg.tuvarna.api.operations.user.login.UserLoginResult;
 import bg.tuvarna.core.service.UserLoginService;
@@ -58,9 +59,11 @@ public class MainController {
         try {
             UserLoginResult result = userLoginService.process(userLoginInput);
             log.info(adminFormPath);
-            sceneChanger.changeScene((Stage) mainTitle.getScene().getWindow(), adminFormPath);
+            if (result.getAuthority().equals(UserAuthority.ADMINISTRATOR)) {
+                sceneChanger.changeScene((Stage) mainTitle.getScene().getWindow(), adminFormPath);
+            }
             log.info("User logged in successfully: {}", userLoginInput.getEmail());
-        } catch (Exception e){
+        } catch (Exception e) {
             userNotFoundLabel.setText(e.getMessage());
             log.error(e.getMessage());
         }

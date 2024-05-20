@@ -1,5 +1,6 @@
 package bg.tuvarna.core.util;
 
+import bg.tuvarna.api.UserAuthority;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -15,4 +16,5 @@ import java.util.UUID;
 @Setter
 public class ActiveUser {
     private Optional<UUID> userId;
+    private Optional<UserAuthority> userAuthority;
 }

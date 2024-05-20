@@ -38,11 +38,13 @@ public class UserLoginService implements UserLogin {
         log.info("User authenticated successfully: {}", user);
 
         activeUser.setUserId(Optional.ofNullable(user.getId()));
+        activeUser.setUserAuthority(Optional.ofNullable(user.getUserAuthority()));
 
         log.info("Setting active user ID: {}", activeUser.getUserId().orElse(null));
 
         return UserLoginResult.builder()
                 .userId(activeUser.getUserId().get())
+                .authority(activeUser.getUserAuthority().get())
                 .build();
     }
 }
