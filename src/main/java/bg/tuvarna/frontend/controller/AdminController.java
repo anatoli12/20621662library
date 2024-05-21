@@ -4,6 +4,8 @@ import bg.tuvarna.api.operations.administrator.getbooks.GetBooks;
 import bg.tuvarna.api.operations.administrator.getbooks.GetBooksInput;
 import bg.tuvarna.api.operations.administrator.getoperators.GetOperators;
 import bg.tuvarna.api.operations.administrator.getoperators.GetOperatorsInput;
+import bg.tuvarna.api.operations.administrator.removeoperator.RemoveOperator;
+import bg.tuvarna.api.operations.administrator.removeoperator.RemoveOperatorInput;
 import bg.tuvarna.api.operations.user.logout.UserLogout;
 import bg.tuvarna.api.operations.user.logout.UserLogoutInput;
 import bg.tuvarna.api.operations.util.BookDTO;
@@ -12,15 +14,15 @@ import bg.tuvarna.frontend.utils.SceneChanger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
 @Slf4j
@@ -53,7 +55,7 @@ public class AdminController {
     private TableColumn<?, ?> operatorIdColumn;
 
     @FXML
-    private TableView operatorTable;
+    private TableView<OperatorDTO> operatorTable;
 
     @FXML
     private Button registerBookButton;
@@ -74,6 +76,8 @@ public class AdminController {
     @Autowired
     private SceneChanger sceneChanger;
     @Autowired
+    private RemoveOperator removeOperator;
+    @Autowired
     private GetBooks getBooks;
 
     @Value("${fxml.paths.loginForm}")
@@ -89,7 +93,7 @@ public class AdminController {
     }
 
     @FXML
-    void registerBook(){
+    void registerBook() {
         sceneChanger.changeScene((Stage) registerBookButton.getScene().getWindow(), registerBookFormPath);
     }
 
@@ -101,8 +105,8 @@ public class AdminController {
             sceneChanger.changeScene((Stage) logoutButton.getScene().getWindow(), loginFormPath);
             log.info("User logged out successfully");
         } catch (Exception e) {
-//            log.error(e.printStackTrace());
-            e.printStackTrace();
+            log.error(e.getMessage());
+//            e.printStackTrace();
         }
     }
 
@@ -112,7 +116,43 @@ public class AdminController {
         initBooks();
     }
 
-    private void initOperators(){
+    @FXML
+    void removeOperator() {
+        // Get the selected item from the TableView
+        Optional.ofNullable(operatorTable.getSelectionModel().getSelectedItem()).ifPresentOrElse(
+                selectedOperator -> {
+                    // Show a confirmation dialog
+                    Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                    confirmationAlert.setTitle("Confirmation");
+                    confirmationAlert.setHeaderText(null);
+                    confirmationAlert.setContentText("Are you sure you want to delete the operator " + selectedOperator.getEmail() + "?");
+
+                    Optional<ButtonType> result = confirmationAlert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK) {
+                        // Create input for RemoveOperator process
+                        RemoveOperatorInput input = RemoveOperatorInput.builder()
+                                .operatorEmail(selectedOperator.getEmail())
+                                .build();
+
+                        // Process the removal
+                        removeOperator.process(input);
+
+                        // Optionally, you might want to remove the item from the table view
+                        operatorTable.getItems().remove(selectedOperator);
+                    }
+                },
+                () -> {
+                    // Handle the case when no item is selected
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Please select an operator to remove.");
+                    alert.showAndWait();
+                }
+        );
+    }
+
+    private void initOperators() {
 
         operatorEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         operatorIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -124,7 +164,7 @@ public class AdminController {
         operatorTable.setItems(operators);
     }
 
-    private void initBooks(){
+    private void initBooks() {
         bookTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         bookAuthorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         bookQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));

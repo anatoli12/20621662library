@@ -48,6 +48,8 @@ public class MainController {
 
     @Value("${fxml.paths.adminForm}")
     private String adminFormPath;
+    @Value("${fxml.paths.operatorForm}")
+    private String operatorFormPath;
 
     @FXML
     void login() {
@@ -61,6 +63,9 @@ public class MainController {
             log.info(adminFormPath);
             if (result.getAuthority().equals(UserAuthority.ADMINISTRATOR)) {
                 sceneChanger.changeScene((Stage) mainTitle.getScene().getWindow(), adminFormPath);
+            }
+            if(result.getAuthority().equals(UserAuthority.OPERATOR)){
+                sceneChanger.changeScene((Stage) mainTitle.getScene().getWindow(), operatorFormPath);
             }
             log.info("User logged in successfully: {}", userLoginInput.getEmail());
         } catch (Exception e) {

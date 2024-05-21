@@ -32,6 +32,6 @@ public class GetOperatorsService implements GetOperators {
                         .email(user.getEmail())
                         .id(String.valueOf(user.getId()))
                         .build())
-                .collect(Collectors.toList());
+                .toList();
     }
 }
