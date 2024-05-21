@@ -6,6 +6,7 @@ import bg.tuvarna.api.operations.administrator.getoperators.GetOperatorsInput;
 import bg.tuvarna.api.operations.administrator.getoperators.GetOperatorsResult;
 import bg.tuvarna.api.operations.util.OperatorDTO;
 import bg.tuvarna.persistence.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class GetOperatorsService implements GetOperators {
 
     private final UserRepository userRepository;

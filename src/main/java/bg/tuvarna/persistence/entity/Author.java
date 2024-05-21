@@ -18,8 +18,8 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "author_id", nullable = false)
     private UUID id;
-    @Column
+    @Column(nullable = false)
     private String name;
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
     private List<Book> books;
 }

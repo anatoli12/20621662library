@@ -80,10 +80,17 @@ public class AdminController {
     private String loginFormPath;
     @Value("${fxml.paths.createOperatorForm}")
     private String createOperatorFormPath;
+    @Value("${fxml.paths.registerBookForm}")
+    private String registerBookFormPath;
 
     @FXML
     void createOperator() {
         sceneChanger.changeScene((Stage) logoutButton.getScene().getWindow(), createOperatorFormPath);
+    }
+
+    @FXML
+    void registerBook(){
+        sceneChanger.changeScene((Stage) registerBookButton.getScene().getWindow(), registerBookFormPath);
     }
 
     @FXML
@@ -102,6 +109,7 @@ public class AdminController {
     @FXML
     public void initialize() {
         initOperators();
+        initBooks();
     }
 
     private void initOperators(){

@@ -12,7 +12,7 @@
          <children>
             <Button fx:id="createOperatorButton" layoutX="14.0" layoutY="325.0" mnemonicParsing="false" onAction="#createOperator" text="Create Operator" />
             <Button fx:id="removeOperatorButton" layoutX="132.0" layoutY="325.0" mnemonicParsing="false" text="Remove Operator" />
-            <Button fx:id="registerBookButton" layoutX="474.0" layoutY="325.0" mnemonicParsing="false" text="Register Book" />
+            <Button fx:id="registerBookButton" layoutX="474.0" layoutY="325.0" mnemonicParsing="false" onAction="#registerBook" text="Register Book" />
             <Button fx:id="addBookItemsButton" layoutX="468.0" layoutY="290.0" mnemonicParsing="false" text="Add Book Items" />
             <Button fx:id="removeArchivedBookItemsButton" layoutX="286.0" layoutY="290.0" mnemonicParsing="false" text="Remove Archived Book Items" />
             <Button fx:id="removeDamagedBookItemsButton" layoutX="284.0" layoutY="325.0" mnemonicParsing="false" text="Remove Damaged Book Items" />

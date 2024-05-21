@@ -5,6 +5,7 @@ import bg.tuvarna.api.operations.administrator.getbooks.GetBooksInput;
 import bg.tuvarna.api.operations.administrator.getbooks.GetBooksResult;
 import bg.tuvarna.api.operations.util.BookDTO;
 import bg.tuvarna.persistence.repository.BookRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class GetBooksService implements GetBooks {
 
     private final BookRepository bookRepository;
