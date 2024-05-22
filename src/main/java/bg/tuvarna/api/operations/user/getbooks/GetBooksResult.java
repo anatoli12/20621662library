@@ -1,4 +1,4 @@
-package bg.tuvarna.api.operations.administrator.getbooks;
+package bg.tuvarna.api.operations.user.getbooks;
 
 import bg.tuvarna.api.base.ProcessorResult;
 import bg.tuvarna.api.operations.util.BookDTO;

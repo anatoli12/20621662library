@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tuvarna.frontend.controller.CreateReaderController">
+    <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <Text fx:id="createReaderLabel" layoutX="172.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Reader" textAlignment="CENTER">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Text>
+                <Label fx:id="firstNameLabel" layoutX="124.0" layoutY="135.0" text="First Name:" textAlignment="RIGHT" />
+                <TextField fx:id="firstNameField" layoutX="226.0" layoutY="135.0" />
+                <Label fx:id="lastNameLabel" layoutX="124.0" layoutY="175.0" text="Last Name:" textAlignment="RIGHT" />
+                <TextField fx:id="lastNameField" layoutX="226.0" layoutY="175.0" />
+                <Label fx:id="phoneNumberLabel" layoutX="124.0" layoutY="215.0" text="Phone Number:" textAlignment="RIGHT" />
+                <TextField fx:id="phoneNumberField" layoutX="226.0" layoutY="215.0" />
+                <Label fx:id="emailLabel" layoutX="124.0" layoutY="255.0" text="Email:" textAlignment="RIGHT" />
+                <TextField fx:id="emailField" layoutX="226.0" layoutY="255.0" />
+                <Button fx:id="createReaderButton" layoutX="226.0" layoutY="302.0" mnemonicParsing="false" onAction="#createReader" text="Create" />
+                <Button fx:id="backButton" layoutX="326.0" layoutY="302.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>

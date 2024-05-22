@@ -4,7 +4,6 @@ import bg.tuvarna.api.operations.administrator.createoperator.CreateOperator;
 import bg.tuvarna.api.operations.administrator.createoperator.CreateOperatorInput;
 import bg.tuvarna.api.operations.administrator.createoperator.CreateOperatorResult;
 import bg.tuvarna.frontend.utils.SceneChanger;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -80,8 +79,9 @@ public class CreateOperatorController {
 
             failedCreationLabel.setText("Failed to create operator: " + e.getMessage());
         }
+        sceneChanger.changeScene((Stage) backButton.getScene().getWindow(), adminViewPath);
     }
 
-    }
+}
 
 
