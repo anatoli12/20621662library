@@ -1,5 +1,7 @@
 package bg.tuvarna.frontend.controller;
 
+import bg.tuvarna.api.operations.administrator.addbookitems.AddBookItems;
+import bg.tuvarna.api.operations.administrator.addbookitems.AddBookItemsInput;
 import bg.tuvarna.api.operations.administrator.getbooks.GetBooks;
 import bg.tuvarna.api.operations.administrator.getbooks.GetBooksInput;
 import bg.tuvarna.api.operations.administrator.getoperators.GetOperators;
@@ -36,6 +38,8 @@ public class AdminController {
     @FXML
 
     private TableColumn<?, ?> bookQuantityColumn;
+    @FXML
+    private TableColumn<?, ?> bookIsbnColumn;
 
     @FXML
     private TableView bookTable;
@@ -79,6 +83,8 @@ public class AdminController {
     private RemoveOperator removeOperator;
     @Autowired
     private GetBooks getBooks;
+    @Autowired
+    private AddBookItems addBookItems;
 
     @Value("${fxml.paths.loginForm}")
     private String loginFormPath;
@@ -152,6 +158,72 @@ public class AdminController {
         );
     }
 
+    @FXML
+    void addBookItems() {
+        // Get the selected book from the TableView
+        Optional<BookDTO> selectedBook = Optional.ofNullable((BookDTO) bookTable.getSelectionModel().getSelectedItem());
+
+        if (selectedBook.isPresent()) {
+            // Show an input dialog to get the quantity
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Add Book Items");
+            dialog.setHeaderText("Add new items for the book: " + selectedBook.get().getTitle());
+            dialog.setContentText("Please enter the quantity:");
+
+            Optional<String> result = dialog.showAndWait();
+
+            result.ifPresent(quantityStr -> {
+                try {
+                    int quantity = Integer.parseInt(quantityStr);
+
+                    // Validate the quantity
+                    if (quantity <= 0) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Invalid Quantity");
+                        alert.setHeaderText(null);
+                        alert.setContentText("The quantity must be a positive integer.");
+                        alert.showAndWait();
+                        return;
+                    }
+
+                    // Create input for AddBookItems process
+                    AddBookItemsInput input = AddBookItemsInput.builder()
+                            .isbn(selectedBook.get().getIsbn())
+                            .quantity(quantity)
+                            .build();
+
+                    // Process adding book items
+                    addBookItems.process(input);
+
+                    // Optionally, show a confirmation dialog
+                    Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
+                    confirmationAlert.setTitle("Success");
+                    confirmationAlert.setHeaderText(null);
+                    confirmationAlert.setContentText(quantity + " items have been added for the book: " + selectedBook.get().getTitle());
+                    confirmationAlert.showAndWait();
+
+                    // Refresh the book list (if necessary)
+                    initBooks();
+
+                } catch (NumberFormatException e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Invalid Input");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Please enter a valid number.");
+                    alert.showAndWait();
+                }
+            });
+        } else {
+            // Handle the case when no book is selected
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a book to add items.");
+            alert.showAndWait();
+        }
+    }
+
+
     private void initOperators() {
 
         operatorEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -168,6 +240,7 @@ public class AdminController {
         bookTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         bookAuthorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         bookQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        bookIsbnColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
 
         ObservableList<BookDTO> bookDTOS = FXCollections.observableArrayList(
                 getBooks.process(new GetBooksInput()).getBookDTOList()

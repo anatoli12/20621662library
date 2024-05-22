@@ -31,8 +31,9 @@ public class GetBooksService implements GetBooks {
                 .map(book -> BookDTO.builder()
                         .title(book.getTitle())
                         .author(book.getAuthor().getName())
+                        .isbn(book.getIsbn())
                         .quantity(book.getBookItems().size())
                         .build())
-                .collect(Collectors.toList());
+                .toList();
     }
 }

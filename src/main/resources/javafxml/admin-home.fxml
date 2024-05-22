@@ -13,7 +13,7 @@
             <Button fx:id="createOperatorButton" layoutX="14.0" layoutY="325.0" mnemonicParsing="false" onAction="#createOperator" text="Create Operator" />
             <Button fx:id="removeOperatorButton" layoutX="132.0" layoutY="325.0" mnemonicParsing="false" onAction="#removeOperator" text="Remove Operator" />
             <Button fx:id="registerBookButton" layoutX="474.0" layoutY="325.0" mnemonicParsing="false" onAction="#registerBook" text="Register Book" />
-            <Button fx:id="addBookItemsButton" layoutX="468.0" layoutY="290.0" mnemonicParsing="false" text="Add Book Items" />
+            <Button fx:id="addBookItemsButton" layoutX="468.0" layoutY="290.0" mnemonicParsing="false" onAction="#addBookItems" text="Add Book Items" />
             <Button fx:id="removeArchivedBookItemsButton" layoutX="286.0" layoutY="290.0" mnemonicParsing="false" text="Remove Archived Book Items" />
             <Button fx:id="removeDamagedBookItemsButton" layoutX="284.0" layoutY="325.0" mnemonicParsing="false" text="Remove Damaged Book Items" />
             <TableView fx:id="bookTable" layoutX="285.0" layoutY="65.0" prefHeight="200.0" prefWidth="287.0">
@@ -21,6 +21,7 @@
                   <TableColumn fx:id="bookTitleColumn" text="Title" />
                   <TableColumn fx:id="bookAuthorColumn" text="Author" />
                   <TableColumn fx:id="bookQuantityColumn" text="Quantity" />
+                  <TableColumn fx:id="bookIsbnColumn" text="ISBN" />
                </columns>
             </TableView>
             <TableView fx:id="operatorTable" layoutX="43.0" layoutY="65.0" prefHeight="200.0" prefWidth="200.0">

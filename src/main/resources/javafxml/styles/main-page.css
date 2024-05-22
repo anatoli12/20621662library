@@ -1,0 +1,29 @@
+#mainTitle {
+    -fx-text-fill: #333333;
+    -fx-font-size: 48px;
+    -fx-font-weight: bold;
+}
+
+#emailLabel, #passwordLabel {
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+}
+
+#emailForm, #passwordForm {
+    -fx-padding: 5px;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4px;
+}
+
+#loginButton {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-border-radius: 4px;
+    -fx-padding: 5px 10px;
+}
+
+#userNotFoundLabel {
+    -fx-text-fill: red;
+    -fx-font-size: 14px;
+}

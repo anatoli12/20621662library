@@ -10,5 +10,6 @@ import lombok.*;
 public class BookDTO {
     private String title;
     private String author;
+    private String isbn;
     private Integer quantity;
 }

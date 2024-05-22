@@ -4,21 +4,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tuvarna.frontend.controller.MainController">
+<BorderPane
+        prefHeight="412.0"
+        prefWidth="627.0"
+        xmlns="http://javafx.com/javafx/21"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="bg.tuvarna.frontend.controller.MainController"
+        stylesheets="@styles/main-page.css">
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <Label fx:id="mainTitle" layoutX="47.0" layoutY="31.0" text="Library Management 1.0.0">
+                <Label fx:id="mainTitle" layoutX="47.0" layoutY="31.0" text="Library Management">
                     <font>
-                        <Font size="48.0" />
+                        <Font size="48.0"/>
                     </font>
                 </Label>
-                <Label fx:id="emailLabel" layoutX="197.0" layoutY="151.0" text="email:" />
-                <Label fx:id="passwordLabel" layoutX="176.0" layoutY="198.0" text="password:" />
-                <TextField fx:id="emailForm" layoutX="239.0" layoutY="147.0" />
-                <Button fx:id="loginButton" layoutX="288.0" layoutY="248.0" mnemonicParsing="false" onAction="#login" text="Login" />
-                <PasswordField fx:id="passwordForm" layoutX="239.0" layoutY="194.0" />
-            <Label fx:id="userNotFoundLabel" layoutX="193.0" layoutY="319.0" prefHeight="17.0" prefWidth="216.0" text="" />
+                <Label fx:id="emailLabel" layoutX="197.0" layoutY="151.0" text="Email:"/>
+                <Label fx:id="passwordLabel" layoutX="176.0" layoutY="198.0" text="Password:"/>
+                <TextField fx:id="emailForm" layoutX="239.0" layoutY="147.0"/>
+                <PasswordField fx:id="passwordForm" layoutX="239.0" layoutY="194.0"/>
+                <Button fx:id="loginButton" layoutX="288.0" layoutY="248.0" mnemonicParsing="false" onAction="#login"
+                        text="Login"/>
+                <Label fx:id="userNotFoundLabel" layoutX="193.0" layoutY="319.0" prefHeight="17.0" prefWidth="216.0"
+                       text=""/>
             </children>
         </AnchorPane>
     </center>
