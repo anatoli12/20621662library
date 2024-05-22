@@ -10,4 +10,5 @@ import lombok.*;
 @AllArgsConstructor
 public class AddBookItemsResult implements ProcessorResult {
     private Boolean isSuccessful;
+    private String message;
 }
