@@ -21,7 +21,7 @@ public class RegisterBookService implements RegisterBook {
 
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
-
+//TODO: INPUT VALIDATION
     @Override
     public RegisterBookResult process(RegisterBookInput input) {
         log.info("Processing RegisterBookInput: {}", input);

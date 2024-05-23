@@ -1,7 +1,10 @@
 package bg.tuvarna.frontend.controller;
 
+import bg.tuvarna.api.BookStatus;
 import bg.tuvarna.api.operations.operator.getreaders.GetReaders;
 import bg.tuvarna.api.operations.operator.getreaders.GetReadersInput;
+import bg.tuvarna.api.operations.operator.lendbookitem.LendBookItem;
+import bg.tuvarna.api.operations.operator.lendbookitem.LendBookItemInput;
 import bg.tuvarna.api.operations.operator.removereader.RemoveReaderInput;
 import bg.tuvarna.api.operations.user.getbooks.GetBooks;
 import bg.tuvarna.api.operations.user.getbooks.GetBooksInput;
@@ -15,15 +18,17 @@ import bg.tuvarna.frontend.utils.SceneChanger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 @Component
 @Slf4j
@@ -86,6 +91,8 @@ public class OperatorController {
     private UserLogout userLogout;
     @Autowired
     private GetReaders getReaders;
+    @Autowired
+    private LendBookItem lendBookItem;
 
     @FXML
     void initialize(){
@@ -154,6 +161,50 @@ public class OperatorController {
                 getReaders.process(new GetReadersInput()).getReaderDTOList()
         );
         readersTableView.setItems(readerDTOS);
+    }
+
+    @FXML
+    void lendBook(){
+        ReaderDTO selectedReader = readersTableView.getSelectionModel().getSelectedItem();
+        String bookIsbn = booksTableView.getSelectionModel().getSelectedItem().getIsbn();
+
+        if (selectedReader == null || bookIsbn == null) {
+            showAlert("Selection Error", "Please select a reader and a book.");
+            return;
+        }
+
+        List<String> choices = Arrays.asList("Reading Room", "Rent Out");
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("Reading Room", choices);
+        dialog.setTitle("Lend Book");
+        dialog.setHeaderText("Choose lending option");
+        dialog.setContentText("Lend the book in the reading room or rent it out:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            BookStatus bookStatus = result.get().equals("Reading Room") ? BookStatus.IN_READING_ROOM : BookStatus.RENTED_OUT;
+
+            try {
+                lendBookItem.process(
+                        LendBookItemInput.builder()
+                                .isbn(bookIsbn)
+                                .readerEmail(selectedReader.getEmail())
+                                .bookStatus(bookStatus)
+                                .build()
+                );
+                showAlert("Success", "Book has been successfully lent.");
+            } catch (Exception e) {
+                showAlert("Error", "Failed to lend the book: " + e.getMessage());
+            }
+        }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 }

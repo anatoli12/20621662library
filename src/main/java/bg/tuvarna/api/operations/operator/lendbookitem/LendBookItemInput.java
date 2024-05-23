@@ -11,6 +11,6 @@ import lombok.*;
 @AllArgsConstructor
 public class LendBookItemInput implements ProcessorInput {
     private String readerEmail;
-    private String bookItemId;
+    private String isbn;
     private BookStatus bookStatus;
 }
