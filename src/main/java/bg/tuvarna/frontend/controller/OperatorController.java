@@ -232,9 +232,10 @@ public class OperatorController {
             ReturnBookController controller = loader.getController();
             controller.setReaderEmail(selectedReader.getEmail());
 
-            sceneChanger.changeScene((Stage) logoutButton.getScene().getWindow(), returnBookScenePath);
+            Stage stage = (Stage) readersTableView.getScene().getWindow();
+            stage.setScene(new Scene(root));
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Failed to load the ReturnBook view: {}", e.getMessage());
         }
     }
 

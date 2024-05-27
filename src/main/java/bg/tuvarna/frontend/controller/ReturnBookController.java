@@ -60,7 +60,6 @@ public class ReturnBookController {
         isbnColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("bookStatus"));
 
-        // Load book items for the reader (example, replace with actual data loading logic)
         if (readerEmail != null && !readerEmail.isEmpty()) {
             loadBookItems();
         }
