@@ -40,6 +40,8 @@ public class AdminController {
     private TableColumn<?, ?> bookQuantityColumn;
     @FXML
     private TableColumn<?, ?> bookIsbnColumn;
+    @FXML
+    private TableColumn<?, ?> bookStatusColumn;
 
     @FXML
     private TableView bookTable;

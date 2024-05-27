@@ -1,6 +1,7 @@
 package bg.tuvarna.api.operations.util;
 
 import lombok.*;
+import bg.tuvarna.api.BookStatus;
 
 @Builder
 @Getter

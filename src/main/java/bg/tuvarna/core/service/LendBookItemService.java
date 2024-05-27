@@ -59,6 +59,8 @@ public class LendBookItemService implements LendBookItem {
         availableBookItem.setBookStatus(input.getBookStatus());
         availableBookItem.setReader(reader);
         bookItemRepository.save(availableBookItem);
+        book.setQuantity(book.getQuantity() - 1);
+        bookRepository.save(book);
 
         log.info("Book item with ID {} successfully lent to reader with email {}", availableBookItem.getId(), input.getReaderEmail());
 

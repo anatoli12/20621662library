@@ -11,4 +11,5 @@ import java.util.UUID;
 @Repository
 public interface BookItemRepository extends JpaRepository<BookItem, UUID> {
     List<BookItem> findAllByBook(Book book);
+    List<BookItem> findByBookIsbn(String isbn);
 }

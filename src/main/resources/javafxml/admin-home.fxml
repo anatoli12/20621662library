@@ -6,32 +6,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tuvarna.frontend.controller.AdminController">
-   <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tuvarna.frontend.controller.AdminController">
+   <top>
+      <AnchorPane prefHeight="517.0" prefWidth="750.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="createOperatorButton" layoutX="14.0" layoutY="325.0" mnemonicParsing="false" onAction="#createOperator" text="Create Operator" />
-            <Button fx:id="removeOperatorButton" layoutX="132.0" layoutY="325.0" mnemonicParsing="false" onAction="#removeOperator" text="Remove Operator" />
-            <Button fx:id="registerBookButton" layoutX="474.0" layoutY="325.0" mnemonicParsing="false" onAction="#registerBook" text="Register Book" />
-            <Button fx:id="addBookItemsButton" layoutX="468.0" layoutY="290.0" mnemonicParsing="false" onAction="#addBookItems" text="Add Book Items" />
-            <Button fx:id="removeArchivedBookItemsButton" layoutX="286.0" layoutY="290.0" mnemonicParsing="false" text="Remove Archived Book Items" />
-            <Button fx:id="removeDamagedBookItemsButton" layoutX="284.0" layoutY="325.0" mnemonicParsing="false" text="Remove Damaged Book Items" />
-            <TableView fx:id="bookTable" layoutX="285.0" layoutY="65.0" prefHeight="200.0" prefWidth="287.0">
+            <Button fx:id="createOperatorButton" layoutX="20.0" layoutY="385.0" mnemonicParsing="false" onAction="#createOperator" text="Create Operator" />
+            <Button fx:id="removeOperatorButton" layoutX="190.0" layoutY="385.0" mnemonicParsing="false" onAction="#removeOperator" text="Remove Operator" />
+            <Button fx:id="registerBookButton" layoutX="624.0" layoutY="423.0" mnemonicParsing="false" onAction="#registerBook" text="Register Book" />
+            <Button fx:id="addBookItemsButton" layoutX="619.0" layoutY="385.0" mnemonicParsing="false" onAction="#addBookItems" text="Add Book Items" />
+            <Button fx:id="removeArchivedBookItemsButton" layoutX="396.0" layoutY="385.0" mnemonicParsing="false" text="Remove Archived Book Items" />
+            <Button fx:id="removeDamagedBookItemsButton" layoutX="394.0" layoutY="423.0" mnemonicParsing="false" text="Remove Damaged Book Items" />
+            <TableView fx:id="bookTable" layoutX="346.0" layoutY="65.0" prefHeight="301.0" prefWidth="372.0">
                <columns>
                   <TableColumn fx:id="bookTitleColumn" text="Title" />
                   <TableColumn fx:id="bookAuthorColumn" text="Author" />
                   <TableColumn fx:id="bookQuantityColumn" text="Quantity" />
                   <TableColumn fx:id="bookIsbnColumn" text="ISBN" />
+                  <TableColumn fx:id="bookStatusColumn" text="Status" />
                </columns>
             </TableView>
-            <TableView fx:id="operatorTable" layoutX="43.0" layoutY="65.0" prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="operatorTable" layoutX="9.0" layoutY="65.0" prefHeight="302.0" prefWidth="292.0">
                <columns>
                   <TableColumn fx:id="operatorEmailColumn" text="Email" />
                   <TableColumn fx:id="operatorIdColumn" text="ID" />
                </columns>
             </TableView>
-            <Button fx:id="logoutButton" layoutX="512.0" layoutY="14.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+            <Button fx:id="logoutButton" layoutX="681.0" layoutY="478.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
          </children>
       </AnchorPane>
-   </center>
+   </top>
 </BorderPane>

@@ -31,4 +31,6 @@ public class Book {
     private BookGenre bookGenre;
     @OneToMany(mappedBy = "book")
     private List<BookItem> bookItems;
+    @Column(nullable = false)
+    private int quantity;
 }
