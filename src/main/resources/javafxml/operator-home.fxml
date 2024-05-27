@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tuvarna.frontend.controller.OperatorController">
-    <center>
+   <bottom>
         <AnchorPane prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
                 <TableView fx:id="booksTableView" layoutX="322.0" layoutY="75.0" prefHeight="200.0" prefWidth="250.0">
@@ -27,8 +30,9 @@
                 <Button fx:id="createReaderButton" layoutX="48.0" layoutY="305.0" mnemonicParsing="false" onAction="#createReader" text="Create Reader" />
                 <Button fx:id="deleteReaderButton" layoutX="145.0" layoutY="305.0" mnemonicParsing="false" onAction="#removeReader" text="Delete Reader" />
             <Button fx:id="logoutButton" layoutX="507.0" layoutY="25.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
-            <Button fx:id="lendBookButton" layoutX="343.0" layoutY="305.0" mnemonicParsing="false" onAction="#lendBook" text="Lend Book" />
+            <Button fx:id="lendBookButton" layoutX="411.0" layoutY="305.0" mnemonicParsing="false" onAction="#lendBook" text="Lend Book" />
+            <Button fx:id="notifyButton" layoutX="108.0" layoutY="349.0" mnemonicParsing="false" onAction="#notifyReader" text="Notify Reader" />
             </children>
         </AnchorPane>
-    </center>
+   </bottom>
 </BorderPane>

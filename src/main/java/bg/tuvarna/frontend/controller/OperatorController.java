@@ -6,6 +6,8 @@ import bg.tuvarna.api.operations.operator.getreaders.GetReaders;
 import bg.tuvarna.api.operations.operator.getreaders.GetReadersInput;
 import bg.tuvarna.api.operations.operator.lendbookitem.LendBookItem;
 import bg.tuvarna.api.operations.operator.lendbookitem.LendBookItemInput;
+import bg.tuvarna.api.operations.operator.notifyreader.NotifyReader;
+import bg.tuvarna.api.operations.operator.notifyreader.NotifyReaderInput;
 import bg.tuvarna.api.operations.operator.removereader.RemoveReader;
 import bg.tuvarna.api.operations.operator.removereader.RemoveReaderInput;
 import bg.tuvarna.api.operations.user.getbooks.GetBooks;
@@ -61,6 +63,7 @@ public class OperatorController {
 
     @FXML
     private Button logoutButton;
+
     @FXML
     private TableColumn<?, ?> readerEmailColumn;
 
@@ -99,6 +102,8 @@ public class OperatorController {
     private GetReaders getReaders;
     @Autowired
     private LendBookItem lendBookItem;
+    @Autowired
+    private NotifyReader notifyReader;
     @Autowired
     private ReturnBookController returnBookController;
 
@@ -177,6 +182,13 @@ public class OperatorController {
                 }
             }
         });
+    }
+    @FXML
+    void notifyReader(){
+        String readerEmail = readersTableView.getSelectionModel().getSelectedItem().getEmail();
+        notifyReader.process(NotifyReaderInput.builder()
+                .email(readerEmail)
+                .build());
     }
 
     @FXML

@@ -6,6 +6,7 @@ import bg.tuvarna.api.operations.operator.notifyreader.NotifyReaderResult;
 import bg.tuvarna.persistence.entity.Reader;
 import bg.tuvarna.persistence.repository.ReaderRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.nio.file.Paths;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class NotifyReaderService implements NotifyReader {
     private final ReaderRepository readerRepository;
 
@@ -25,12 +27,13 @@ public class NotifyReaderService implements NotifyReader {
         String recipient = reader.getFirstName() + " " + reader.getLastName();
         String body = createEmailBody(reader);
         String filePath = saveEmailToFile(recipient, body);
-
+        log.info(body);
         return NotifyReaderResult.builder()
                 .recipient(recipient)
                 .body(body)
                 .filePath(filePath)
                 .build();
+
     }
 
     private String createEmailBody(Reader reader) {
@@ -49,7 +52,7 @@ public class NotifyReaderService implements NotifyReader {
     }
 
     private String saveEmailToFile(String recipient, String body) {
-        String fileName = "email_to_" + recipient.replace(" ", "_") + ".txt";
+        String fileName = "email_to_" + recipient.replace(" ", "_") + ".html";
         Path path = Paths.get(fileName);
 
         try {
