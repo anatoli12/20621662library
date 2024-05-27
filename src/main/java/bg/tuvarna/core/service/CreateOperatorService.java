@@ -20,14 +20,9 @@ import java.util.Optional;
 public class CreateOperatorService implements CreateOperator {
 
     private final UserRepository userRepository;
-//    private final Validator validator;
+
     @Override
     public CreateOperatorResult process(CreateOperatorInput input) {
-//        Set<ConstraintViolation<CreateOperatorInput>> violations = validator.validate(input);
-//        if (!violations.isEmpty()) {
-//            throw new ConstraintViolationException(violations);
-//        }
-
         log.info("Processing CreateOperatorInput: {}", input);
 
         if (!input.getPassword().equals(input.getConfirmPassword())) {

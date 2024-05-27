@@ -34,14 +34,12 @@ class ChangeBookStatusServiceTest {
 
     @Test
     void testProcessInvalidBookItemId() {
-        // Arrange
         String invalidBookItemId = "invalid-uuid";
         ChangeBookStatusInput input = ChangeBookStatusInput.builder()
                 .bookItemId(invalidBookItemId)
                 .bookStatus(BookStatus.DAMAGED)
                 .build();
 
-        // Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             changeBookStatusService.process(input);
         });
@@ -51,7 +49,6 @@ class ChangeBookStatusServiceTest {
 
     @Test
     void testProcessBookItemNotFound() {
-        // Arrange
         String bookItemId = UUID.randomUUID().toString();
         ChangeBookStatusInput input = ChangeBookStatusInput.builder()
                 .bookItemId(bookItemId)
@@ -60,7 +57,6 @@ class ChangeBookStatusServiceTest {
 
         when(bookItemRepository.findById(UUID.fromString(bookItemId))).thenReturn(Optional.empty());
 
-        // Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             changeBookStatusService.process(input);
         });
@@ -70,7 +66,6 @@ class ChangeBookStatusServiceTest {
 
     @Test
     void testProcessBookStatusChangedSuccessfully() {
-        // Arrange
         String bookItemId = UUID.randomUUID().toString();
         ChangeBookStatusInput input = ChangeBookStatusInput.builder()
                 .bookItemId(bookItemId)
@@ -83,10 +78,8 @@ class ChangeBookStatusServiceTest {
 
         when(bookItemRepository.findById(UUID.fromString(bookItemId))).thenReturn(Optional.of(bookItem));
 
-        // Act
         ChangeBookStatusResult result = changeBookStatusService.process(input);
 
-        // Assert
         assertEquals(BookStatus.DAMAGED, result.getBookStatus());
 
         ArgumentCaptor<BookItem> bookItemCaptor = ArgumentCaptor.forClass(BookItem.class);
