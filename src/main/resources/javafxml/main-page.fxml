@@ -9,8 +9,7 @@
         prefWidth="627.0"
         xmlns="http://javafx.com/javafx/21"
         xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="bg.tuvarna.frontend.controller.MainController"
-        stylesheets="@styles/main-page.css">
+        fx:controller="bg.tuvarna.frontend.controller.MainController">
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>

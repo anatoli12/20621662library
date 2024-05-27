@@ -17,15 +17,21 @@ import bg.tuvarna.api.operations.util.ReaderDTO;
 import bg.tuvarna.frontend.utils.SceneChanger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -78,6 +84,8 @@ public class OperatorController {
     private String createReaderPath;
     @Value("${fxml.paths.loginForm}")
     private String loginFormPath;
+    @Value("${fxml.paths.returnBookForm}")
+    private String returnBookScenePath;
     @Autowired
     private SceneChanger sceneChanger;
 
@@ -161,6 +169,15 @@ public class OperatorController {
                 getReaders.process(new GetReadersInput()).getReaderDTOList()
         );
         readersTableView.setItems(readerDTOS);
+
+        readersTableView.setOnMouseClicked(click -> {
+            if (click.getClickCount() == 2) {
+                ReaderDTO selectedReader = readersTableView.getSelectionModel().getSelectedItem();
+                if (selectedReader != null) {
+                    openReaderBookItemsView(selectedReader);
+                }
+            }
+        });
     }
 
     @FXML
@@ -205,6 +222,20 @@ public class OperatorController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private void openReaderBookItemsView(ReaderDTO selectedReader) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(returnBookScenePath));
+            Parent root = loader.load();
+
+            ReturnBookController controller = loader.getController();
+            controller.setReaderEmail(selectedReader.getEmail());
+
+            sceneChanger.changeScene((Stage) logoutButton.getScene().getWindow(), returnBookScenePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

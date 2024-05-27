@@ -1,8 +1,6 @@
 package bg.tuvarna.core.service;
 
 import bg.tuvarna.api.BookStatus;
-import bg.tuvarna.api.operations.administrator.removearchivedbooks.RemoveArchivedBookItemsInput;
-import bg.tuvarna.api.operations.administrator.removearchivedbooks.RemoveArchivedBookItemsResult;
 import bg.tuvarna.api.operations.administrator.removedamagedbooks.RemoveDamagedBookItems;
 import bg.tuvarna.api.operations.administrator.removedamagedbooks.RemoveDamagedBookItemsInput;
 import bg.tuvarna.api.operations.administrator.removedamagedbooks.RemoveDamagedBookItemsResult;
