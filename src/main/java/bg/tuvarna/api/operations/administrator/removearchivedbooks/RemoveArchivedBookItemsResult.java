@@ -9,5 +9,5 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RemoveArchivedBookItemsResult implements ProcessorResult {
-    private Boolean isSuccessful;
+    private Integer removedCount;
 }
