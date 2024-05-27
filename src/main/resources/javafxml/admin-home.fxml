@@ -11,8 +11,8 @@
             <Button fx:id="removeOperatorButton" layoutX="132.0" layoutY="325.0" mnemonicParsing="false" onAction="#removeOperator" text="Remove Operator" />
             <Button fx:id="registerBookButton" layoutX="474.0" layoutY="325.0" mnemonicParsing="false" onAction="#registerBook" text="Register Book" />
             <Button fx:id="addBookItemsButton" layoutX="468.0" layoutY="290.0" mnemonicParsing="false" onAction="#addBookItems" text="Add Book Items" />
-            <Button fx:id="removeArchivedBookItemsButton" layoutX="286.0" layoutY="290.0" mnemonicParsing="false" text="Remove Archived Book Items" />
-            <Button fx:id="removeDamagedBookItemsButton" layoutX="284.0" layoutY="325.0" mnemonicParsing="false" text="Remove Damaged Book Items" />
+            <Button fx:id="removeArchivedBookItemsButton" layoutX="286.0" layoutY="290.0" mnemonicParsing="false" onAction="#removeArchivedBookItems" text="Remove Archived Book Items" />
+            <Button fx:id="removeDamagedBookItemsButton" layoutX="284.0" layoutY="325.0" mnemonicParsing="false" onAction="#removeDamagedBookItems" text="Remove Damaged Book Items" />
             <TableView fx:id="bookTable" layoutX="285.0" layoutY="65.0" prefHeight="200.0" prefWidth="287.0">
                <columns>
                   <TableColumn fx:id="bookTitleColumn" text="Title" />

@@ -4,6 +4,10 @@ import bg.tuvarna.api.operations.administrator.addbookitems.AddBookItems;
 import bg.tuvarna.api.operations.administrator.addbookitems.AddBookItemsInput;
 import bg.tuvarna.api.operations.administrator.getoperators.GetOperators;
 import bg.tuvarna.api.operations.administrator.getoperators.GetOperatorsInput;
+import bg.tuvarna.api.operations.administrator.removearchivedbooks.RemoveArchivedBookItems;
+import bg.tuvarna.api.operations.administrator.removearchivedbooks.RemoveArchivedBookItemsInput;
+import bg.tuvarna.api.operations.administrator.removedamagedbooks.RemoveDamagedBookItems;
+import bg.tuvarna.api.operations.administrator.removedamagedbooks.RemoveDamagedBookItemsInput;
 import bg.tuvarna.api.operations.administrator.removeoperator.RemoveOperator;
 import bg.tuvarna.api.operations.administrator.removeoperator.RemoveOperatorInput;
 import bg.tuvarna.api.operations.user.getbooks.GetBooks;
@@ -85,6 +89,10 @@ public class AdminController {
     private GetBooks getBooks;
     @Autowired
     private AddBookItems addBookItems;
+    @Autowired
+    private RemoveArchivedBookItems removeArchivedBookItems;
+    @Autowired
+    private RemoveDamagedBookItems removeDamagedBookItems;
 
     @Value("${fxml.paths.loginForm}")
     private String loginFormPath;
@@ -156,6 +164,14 @@ public class AdminController {
                     alert.showAndWait();
                 }
         );
+    }
+    @FXML
+    void removeArchivedBookItems(){
+        removeArchivedBookItems.process(RemoveArchivedBookItemsInput.builder().build());
+    }
+    @FXML
+    void removeDamagedBookItems(){
+        removeDamagedBookItems.process(RemoveDamagedBookItemsInput.builder().build());
     }
 
     @FXML

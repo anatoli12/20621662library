@@ -21,12 +21,14 @@ public class RemoveDamagedBookItemsService implements RemoveDamagedBookItems {
     @Override
     @Transactional
     public RemoveDamagedBookItemsResult process(RemoveDamagedBookItemsInput input) {
-        List<BookItem> archivedBookItems = bookItemRepository.findByBookStatus(BookStatus.ARCHIVED);
-        int removedCount = archivedBookItems.size();
+        List<BookItem> damagedBookItems = bookItemRepository.findByBookStatus(BookStatus.DAMAGED);
+        int removedCount = damagedBookItems.size();
 
-        bookItemRepository.deleteAll(archivedBookItems);
+        bookItemRepository.deleteAll(damagedBookItems);
+        damagedBookItems.forEach(bookItem -> log.info("Removed Book with ID: {}", bookItem.getId()));
 
-        log.info("Removed {} archived book items", removedCount);
+
+        log.info("Removed {} damaged book items", removedCount);
 
         return RemoveDamagedBookItemsResult.builder()
                 .removedCount(removedCount)

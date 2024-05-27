@@ -25,6 +25,7 @@ public class RemoveArchivedBookItemsService implements RemoveArchivedBookItems {
         int removedCount = archivedBookItems.size();
 
         bookItemRepository.deleteAll(archivedBookItems);
+        archivedBookItems.forEach(bookItem -> log.info("Removed Book with ID: {}", bookItem.getId()));
 
         log.info("Removed {} archived book items", removedCount);
 
