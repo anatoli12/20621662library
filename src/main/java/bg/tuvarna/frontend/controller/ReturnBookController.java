@@ -2,10 +2,13 @@ package bg.tuvarna.frontend.controller;
 
 import bg.tuvarna.api.operations.operator.getbookitemsforreader.GetBookItemsForReaderInput;
 import bg.tuvarna.api.operations.operator.getbookitemsforreader.GetBookItemsForReaderResult;
+import bg.tuvarna.api.operations.operator.returnbook.ReturnBookItem;
+import bg.tuvarna.api.operations.operator.returnbook.ReturnBookItemInput;
 import bg.tuvarna.api.operations.util.BookItemDTO;
 import bg.tuvarna.core.service.GetBookItemsForReaderService;
 import bg.tuvarna.frontend.utils.SceneChanger;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -47,6 +50,8 @@ public class ReturnBookController {
 
     @Autowired
     private GetBookItemsForReaderService getBookItemsForReader;
+    @Autowired
+    private ReturnBookItem returnBookItem;
 
     @Autowired
     private SceneChanger sceneChanger;
@@ -67,11 +72,19 @@ public class ReturnBookController {
 
     @FXML
     void returnBook() {
-        // Implement the return book logic
+        BookItemDTO selectedBookItem = booksTable.getSelectionModel().getSelectedItem();
+        if (selectedBookItem != null) {
+            returnBookItem.process(ReturnBookItemInput.builder()
+                    .bookItemId(selectedBookItem.getId())
+                    .build());
+        } else {
+            // Show an alert if no book is selected
+            showAlert("No Selection", "No book selected", "Please select a book to return.");
+        }
+        initialize();
     }
 
     private void loadBookItems() {
-
         GetBookItemsForReaderResult result = getBookItemsForReader.process(
                 GetBookItemsForReaderInput.builder()
                         .email(readerEmail)
@@ -84,8 +97,15 @@ public class ReturnBookController {
     }
 
     @FXML
-    void goBack(){
+    void goBack() {
         sceneChanger.changeScene((Stage) backButton.getScene().getWindow(), operatorFormPath);
     }
 
+    private void showAlert(String title, String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 }
