@@ -7,7 +7,6 @@ import bg.tuvarna.api.operations.operator.returnbook.ReturnBookItemResult;
 import bg.tuvarna.persistence.entity.BookItem;
 import bg.tuvarna.persistence.entity.Reader;
 import bg.tuvarna.persistence.repository.BookItemRepository;
-import bg.tuvarna.persistence.repository.BookRepository;
 import bg.tuvarna.persistence.repository.ReaderRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

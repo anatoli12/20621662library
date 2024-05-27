@@ -16,16 +16,10 @@ import java.util.ArrayList;
 @Slf4j
 public class CreateReaderService implements CreateReader {
     private final ReaderRepository readerRepository;
-//    private final Validator validator;
 
     @Override
     public CreateReaderResult process(CreateReaderInput input) {
         log.info("Processing CreateReaderInput: {}", input);
-
-//        Set<ConstraintViolation<CreateReaderInput>> violations = validator.validate(input);
-//        if (!violations.isEmpty()) {
-//            throw new ConstraintViolationException(violations);
-//        }
 
         Reader newReader = Reader.builder()
                 .email(input.getEmail())

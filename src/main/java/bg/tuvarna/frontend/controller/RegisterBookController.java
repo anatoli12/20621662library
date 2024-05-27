@@ -5,19 +5,17 @@ import bg.tuvarna.api.operations.administrator.registerbook.RegisterBook;
 import bg.tuvarna.api.operations.administrator.registerbook.RegisterBookInput;
 import bg.tuvarna.api.operations.administrator.registerbook.RegisterBookResult;
 import bg.tuvarna.frontend.utils.SceneChanger;
-import javafx.stage.Stage;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j

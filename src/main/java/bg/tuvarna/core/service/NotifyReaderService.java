@@ -3,7 +3,6 @@ package bg.tuvarna.core.service;
 import bg.tuvarna.api.operations.operator.notifyreader.NotifyReader;
 import bg.tuvarna.api.operations.operator.notifyreader.NotifyReaderInput;
 import bg.tuvarna.api.operations.operator.notifyreader.NotifyReaderResult;
-import bg.tuvarna.persistence.entity.BookItem;
 import bg.tuvarna.persistence.entity.Reader;
 import bg.tuvarna.persistence.repository.ReaderRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

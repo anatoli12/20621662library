@@ -1,15 +1,15 @@
 package bg.tuvarna.frontend.controller;
 
 import bg.tuvarna.api.BookStatus;
+import bg.tuvarna.api.operations.operator.createreader.CreateReader;
 import bg.tuvarna.api.operations.operator.getreaders.GetReaders;
 import bg.tuvarna.api.operations.operator.getreaders.GetReadersInput;
 import bg.tuvarna.api.operations.operator.lendbookitem.LendBookItem;
 import bg.tuvarna.api.operations.operator.lendbookitem.LendBookItemInput;
+import bg.tuvarna.api.operations.operator.removereader.RemoveReader;
 import bg.tuvarna.api.operations.operator.removereader.RemoveReaderInput;
 import bg.tuvarna.api.operations.user.getbooks.GetBooks;
 import bg.tuvarna.api.operations.user.getbooks.GetBooksInput;
-import bg.tuvarna.api.operations.operator.createreader.CreateReader;
-import bg.tuvarna.api.operations.operator.removereader.RemoveReader;
 import bg.tuvarna.api.operations.user.logout.UserLogout;
 import bg.tuvarna.api.operations.user.logout.UserLogoutInput;
 import bg.tuvarna.api.operations.util.BookDTO;
@@ -17,14 +17,12 @@ import bg.tuvarna.api.operations.util.ReaderDTO;
 import bg.tuvarna.frontend.utils.SceneChanger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,6 +99,8 @@ public class OperatorController {
     private GetReaders getReaders;
     @Autowired
     private LendBookItem lendBookItem;
+    @Autowired
+    private ReturnBookController returnBookController;
 
     @FXML
     void initialize(){
@@ -154,7 +154,6 @@ public class OperatorController {
             log.info("User logged out successfully");
         } catch (Exception e) {
             log.error(e.getMessage());
-//            e.printStackTrace();
         }
     }
 
@@ -225,18 +224,8 @@ public class OperatorController {
     }
 
     private void openReaderBookItemsView(ReaderDTO selectedReader) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(returnBookScenePath));
-            Parent root = loader.load();
-
-            ReturnBookController controller = loader.getController();
-            controller.setReaderEmail(selectedReader.getEmail());
-
-            Stage stage = (Stage) readersTableView.getScene().getWindow();
-            stage.setScene(new Scene(root));
-        } catch (IOException e) {
-            log.error("Failed to load the ReturnBook view: {}", e.getMessage());
-        }
+            returnBookController.setReaderEmail(selectedReader.getEmail());
+            sceneChanger.changeScene((Stage) createReaderButton.getScene().getWindow(), returnBookScenePath);
     }
 
 }

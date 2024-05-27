@@ -2,12 +2,12 @@ package bg.tuvarna.frontend.controller;
 
 import bg.tuvarna.api.operations.administrator.addbookitems.AddBookItems;
 import bg.tuvarna.api.operations.administrator.addbookitems.AddBookItemsInput;
-import bg.tuvarna.api.operations.user.getbooks.GetBooks;
-import bg.tuvarna.api.operations.user.getbooks.GetBooksInput;
 import bg.tuvarna.api.operations.administrator.getoperators.GetOperators;
 import bg.tuvarna.api.operations.administrator.getoperators.GetOperatorsInput;
 import bg.tuvarna.api.operations.administrator.removeoperator.RemoveOperator;
 import bg.tuvarna.api.operations.administrator.removeoperator.RemoveOperatorInput;
+import bg.tuvarna.api.operations.user.getbooks.GetBooks;
+import bg.tuvarna.api.operations.user.getbooks.GetBooksInput;
 import bg.tuvarna.api.operations.user.logout.UserLogout;
 import bg.tuvarna.api.operations.user.logout.UserLogoutInput;
 import bg.tuvarna.api.operations.util.BookDTO;
